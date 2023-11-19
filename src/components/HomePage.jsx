@@ -20,7 +20,6 @@ function CategoryExample({categoryName, categoryStyle, item, right=true}){
             </div>
         </div>
     )
-
 }
 
 function HomePage({exampleItems}){

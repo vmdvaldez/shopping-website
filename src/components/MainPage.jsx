@@ -3,16 +3,19 @@ import "../styles/MainPage.css";
 import styles from "../styles/NavBar.module.css"
 import HomePage from "./HomePage";
 import LoadingScreen from "./Loading";
+import cartSVG from '../assets/cart.svg'
 
 function NavBar(){
+    // const cartSVG = "../assets/cart.svg";
+
     return(
         <nav>
             <ul className={styles.nav}>
                 <li className={`${styles.home} ${styles.navitems}` }>Home</li>
-                <li className={`${styles.storeName}}`}>Fake Shop</li>
+                <li className={`${styles.storeName}`}>Fake Shop</li>
                 <li className={`${styles.store} ${styles.navitems}` }>Store</li>
                 <li className={`${styles.cart} ${styles.navitems}`}>
-                    <img src="#"></img>
+                    <img src={cartSVG}></img>
                 </li>
             </ul>
         </nav>

@@ -4,6 +4,7 @@
 
     grid-template-columns: min-content 1fr min-content min-content;
     justify-items: center;
+    align-items: center;
 
     padding: 15px;
     margin: 0px;
@@ -22,4 +23,19 @@
 .navitems:hover{
     cursor: pointer;
     transform: scale(1.2);
+}
+
+.cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart img{
+    filter: invert(81%) sepia(23%) saturate(174%) hue-rotate(83deg) brightness(95%) contrast(88%);
+    max-width: 40px;
+}
+
+.storeName{
+    transform: scale(1.5);
 }
