@@ -4,12 +4,13 @@ import styles from "../styles/NavBar.module.css"
 import HomePage from "./HomePage";
 import LoadingScreen from "./Loading";
 import cartSVG from '../assets/cart.svg'
+import StorePage from "./StorePage";
 
 function NavBar(){
     // const cartSVG = "../assets/cart.svg";
 
     return(
-        <nav>
+        <nav className={styles.navContainer}>
             <ul className={styles.nav}>
                 <li className={`${styles.home} ${styles.navitems}` }>Home</li>
                 <li className={`${styles.storeName}`}>Fake Shop</li>
@@ -58,13 +59,19 @@ function MainPage(){
     return(
         <div id="main">
             <NavBar/>
-            {loading ? 
+            {/* {loading ? 
                 <LoadingScreen/> : 
                 <HomePage exampleItems={{
                     mens: mensItems.current[1].image,
                     womens: womensItems.current[0].image,
                     jewelry: jewelry.current[0].image
-                }}/>}
+                }}/>} */}
+            {loading ? <LoadingScreen/>:
+                <StorePage 
+                mensItems={mensItems.current} 
+                womensItems={womensItems.current} 
+                jewelry={jewelry.current}
+            />}
         </div>
     )
 }

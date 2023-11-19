@@ -1,4 +1,13 @@
+.navContainer{
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
 .nav {
+    height: 80px;
+
     list-style: none;
     display: grid;
 
@@ -14,6 +23,7 @@
     color: var(--text-color);
 
     font-size: 1.5rem;
+    
 }
 
 .nav li{

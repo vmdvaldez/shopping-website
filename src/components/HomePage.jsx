@@ -24,7 +24,7 @@ function CategoryExample({categoryName, categoryStyle, item, right=true}){
 
 function HomePage({exampleItems}){
     return(
-        <main>
+        <main className={styles.main}>
             <div className={styles.categories}>
                 <CategoryExample
                     categoryName="Men's Clothing"
