@@ -26,17 +26,17 @@ function SideNav({mensItems, womensItems, jewelry, setSelectedItems}){
 
 function Item({title, price, img}){
     return(
-        <div>
+        <div className={styles.itemCard}>
             <div className={styles.imgDiv}><img src={img}></img></div>
-            <div>
-                <div>{title}</div>
-                <div>{price}</div>
+            <div className={styles.itemInfo}>
+                <div className={styles.title}>{title}</div>
+                <div>${price}</div>
             </div>
         </div>
     )
 }
 
-function DisplayItem({items}){
+function DisplayItems({items}){
     return(
         <>
             {items.map(item=>{
@@ -65,7 +65,7 @@ function StorePage({mensItems, womensItems, jewelry}){
                 setSelectedItems={setSelectedItems}
             />
             <main className={styles.content}>
-                <DisplayItem items={selectedItems}/>
+                <DisplayItems items={selectedItems}/>
             </main>
         </section>
     )
