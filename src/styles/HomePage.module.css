@@ -1,0 +1,83 @@
+main{
+    padding: 50px;
+    background-color: var(--content-bg-color);
+    color: var(--header-color);
+}
+
+.categories{
+    display: grid;
+
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.btn {
+    background-color: var(--header-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    border: 2px solid var(--text-color);
+
+    cursor: pointer;
+
+    font-size: 1.5rem;
+    font-family: var(--font-style);
+    font-weight: 800;
+}
+
+.men,
+.jewelry{
+    display: flex;
+}
+
+.women{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.images{
+    margin: 15px;
+}
+
+
+
+.rightInfo,
+.leftInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.rightInfo div,
+.leftInfo div{
+    align-self: center;
+    flex: 1;
+
+    display: flex;
+    height: 100%;
+}
+
+.leftInfo div h1,
+.rightInfo div h1{
+    display: flex;
+    align-items: center;
+}
+
+
+.rightInfo .btn,
+.leftInfo .btn{
+    min-width: 20%;
+    min-height: 5%;
+}
+
+.rightInfo .btn{
+    align-self: flex-end;
+}
+
+.leftInfo .btn{
+    align-self: flex-start;
+}
+
+h1 {
+    font-size: 10rem;
+}

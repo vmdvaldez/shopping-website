@@ -1,0 +1,25 @@
+.nav {
+    list-style: none;
+    display: grid;
+
+    grid-template-columns: min-content 1fr min-content min-content;
+    justify-items: center;
+
+    padding: 15px;
+    margin: 0px;
+
+    gap: 20px;
+    background-color: var(--header-color);
+    color: var(--text-color);
+
+    font-size: 1.5rem;
+}
+
+.nav li{
+    padding: 0px 10px;
+}
+
+.navitems:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}

@@ -1,0 +1,31 @@
+:root{
+    --font-style: 'Big Shoulders Stencil Text', sans-serif;
+    --header-color: #2D4739;
+    --text-color: #B3CBB9;
+    --content-bg-color: #edf3ef;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    min-height: 100%;
+    overflow-y: scroll;
+}
+
+body{
+    min-height: 100%;
+    font-family: var(--font-style);
+}
+
+#main {
+    display: grid;
+    grid-template-rows: min-content  1fr;
+}
+
+/* nav{
+    position: fixed;
+    width: 100vw;
+} */
