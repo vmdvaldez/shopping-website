@@ -23,6 +23,11 @@ main{
     font-weight: 800;
 }
 
+.btn:hover{
+    transform: scale(1.1);
+    outline: var(--text-color) solid 2px;
+}
+
 .men,
 .jewelry{
     display: flex;
