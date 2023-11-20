@@ -17,11 +17,11 @@ function NavBar(){
         <nav className={styles.navContainer}>
             <ul className={styles.nav}>
                 <li className={`${styles.home} ${styles.navitems}`}>
-                    <Link to="/">Home</Link>
+                    <Link to="/" className={styles.navLinks}>Home</Link>
                 </li>
                 <li className={`${styles.storeName}`}>Fake Shop</li>
                 <li className={`${styles.store} ${styles.navitems}` }>
-                    <Link to="store">Store</Link>
+                    <Link to="store" className={styles.navLinks}>Store</Link>
                 </li>
                 <li className={`${styles.cart} ${styles.navitems}`}>
                     <img src={cartSVG}></img>

@@ -5,7 +5,8 @@
     width: 100%;
 }
 
-.nav {
+.nav,
+.navLinks:visited{
     height: 80px;
 
     list-style: none;
@@ -26,6 +27,10 @@
     
 }
 
+.navLinks{
+    text-decoration: none;
+}
+
 .nav li{
     padding: 0px 10px;
 }
@@ -34,6 +39,8 @@
     cursor: pointer;
     transform: scale(1.2);
 }
+
+
 
 .cart{
     display: flex;
