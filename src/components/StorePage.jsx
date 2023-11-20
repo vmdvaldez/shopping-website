@@ -1,6 +1,6 @@
 import {useState} from "react";
 import styles from "../styles/StorePage.module.css"
-
+import { useOutletContext } from "react-router-dom";
 
 function SideNav({mensItems, womensItems, jewelry, setSelectedItems}){
     const categories = ["Men's Clothing", "Women's Clothing", "Jewelry"];
@@ -50,18 +50,16 @@ function DisplayItems({items}){
     )
 }
 
-function StorePage({mensItems, womensItems, jewelry}){
-    const [selectedItems, setSelectedItems] = useState(mensItems);
-
-    console.log("RENDERING");
-    console.log("SELECTED ITEMS", selectedItems);
+function StorePage(){
+    const items = useOutletContext();
+    const [selectedItems, setSelectedItems] = useState(items.mens);
 
     return(
         <section className={styles.main}>
             <SideNav 
-                mensItems={mensItems}
-                womensItems={womensItems}
-                jewelry={jewelry}
+                mensItems={items.mens}
+                womensItems={items.womens}
+                jewelry={items.jewelry}
                 setSelectedItems={setSelectedItems}
             />
             <main className={styles.content}>

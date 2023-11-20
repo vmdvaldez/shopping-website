@@ -71,15 +71,16 @@
 
 .rightInfo .btn,
 .leftInfo .btn{
+    padding: 5px;
     min-width: 20%;
     min-height: 5%;
 }
 
-.rightInfo .btn{
+.rightInfo .btnLink{
     align-self: flex-end;
 }
 
-.leftInfo .btn{
+.leftInfo .btnLink{
     align-self: flex-start;
 }
 

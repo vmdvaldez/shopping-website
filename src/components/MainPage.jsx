@@ -6,15 +6,23 @@ import LoadingScreen from "./Loading";
 import cartSVG from '../assets/cart.svg'
 import StorePage from "./StorePage";
 
+import { Outlet, Link } from "react-router-dom";
+
+
+
 function NavBar(){
     // const cartSVG = "../assets/cart.svg";
 
     return(
         <nav className={styles.navContainer}>
             <ul className={styles.nav}>
-                <li className={`${styles.home} ${styles.navitems}` }>Home</li>
+                <li className={`${styles.home} ${styles.navitems}`}>
+                    <Link to="/">Home</Link>
+                </li>
                 <li className={`${styles.storeName}`}>Fake Shop</li>
-                <li className={`${styles.store} ${styles.navitems}` }>Store</li>
+                <li className={`${styles.store} ${styles.navitems}` }>
+                    <Link to="store">Store</Link>
+                </li>
                 <li className={`${styles.cart} ${styles.navitems}`}>
                     <img src={cartSVG}></img>
                 </li>
@@ -52,10 +60,6 @@ function MainPage(){
             });
     },[]);
 
-    console.log("Mens",mensItems);
-    console.log("Womens", womensItems);
-    console.log("Jewelry", jewelry);
-
     return(
         <div id="main">
             <NavBar/>
@@ -66,12 +70,20 @@ function MainPage(){
                     womens: womensItems.current[0].image,
                     jewelry: jewelry.current[0].image
                 }}/>} */}
-            {loading ? <LoadingScreen/>:
+            {/* {loading ? <LoadingScreen/>:
                 <StorePage 
                 mensItems={mensItems.current} 
                 womensItems={womensItems.current} 
                 jewelry={jewelry.current}
-            />}
+            />} */}
+            {loading ? <LoadingScreen/> : 
+                <Outlet context={{
+                    mens: mensItems.current,
+                    womens: womensItems.current,
+                    jewelry: jewelry.current
+                }}
+                />
+            }
         </div>
     )
 }
