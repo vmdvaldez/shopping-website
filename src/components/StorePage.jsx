@@ -1,8 +1,8 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import styles from "../styles/StorePage.module.css"
-import { useOutletContext } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 
-function SideNav({mensItems, womensItems, jewelry, setSelectedItems}){
+function SideNav({mensItems, womensItems, jewelry, setCategory}){
     const categories = ["Men's Clothing", "Women's Clothing", "Jewelry"];
     const items = [mensItems, womensItems, jewelry]
     let index = -1;
@@ -15,7 +15,7 @@ function SideNav({mensItems, womensItems, jewelry, setSelectedItems}){
                         return (
                         <li key={c} 
                             className={styles.navItem}
-                            onClick={()=>setSelectedItems(selected)}>{c}
+                            onClick={()=>setCategory(selected)}>{c}
                         </li>
                     )
                 })}
@@ -52,18 +52,26 @@ function DisplayItems({items}){
 
 function StorePage(){
     const items = useOutletContext();
-    const [selectedItems, setSelectedItems] = useState(items.mens);
+    const stateCategory = useLocation();
+    const [category, setCategory] = useState("mens");
+    let dispItem = (category == "mens") ? 
+        items.mens : (category == "womens") ? items.womens : items.jewelry
+    
+
+    useEffect(()=>{
+        setCategory(stateCategory.state);
+    },[stateCategory.state])
 
     return(
         <section className={styles.main}>
             <SideNav 
-                mensItems={items.mens}
-                womensItems={items.womens}
-                jewelry={items.jewelry}
-                setSelectedItems={setSelectedItems}
+                mensItems="mens"
+                womensItems="womens"
+                jewelry="jewelry"
+                setCategory={setCategory}
             />
             <main className={styles.content}>
-                <DisplayItems items={selectedItems}/>
+                <DisplayItems items={dispItem}/>
             </main>
         </section>
     )

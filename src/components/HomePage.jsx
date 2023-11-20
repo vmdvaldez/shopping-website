@@ -1,14 +1,13 @@
 import styles from "../styles/HomePage.module.css";
 import { useOutletContext, Link } from "react-router-dom";
 
-function Button({name}){
+function Button({name, category}){
     return(
-        <Link to="store" className={styles.btnLink}>
+        <Link to="store" className={styles.btnLink} state={category}>
             <button className={styles.btn}>
                 {name}
             </button>      
         </Link>
-
     )
 }
 
@@ -26,7 +25,7 @@ function CategoryExample({categoryName, categoryStyle, item, right=true}){
                 <div>
                     <h1>{category[categoryName]}</h1>
                 </div>
-                <Button name={`Shop For ${category[categoryName]}`}/>
+                <Button name={`Shop For ${category[categoryName]}`} category={categoryName}/>
             </div>
         </div>
     )
