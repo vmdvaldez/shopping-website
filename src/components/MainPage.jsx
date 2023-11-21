@@ -10,12 +10,12 @@ import { Outlet, Link } from "react-router-dom";
 
 export const CartContext = createContext({
     cartItems: [],
-    addToCart: ()=>{}
+    addToCart: ()=>{},
+    removeFromCart: ()=>{}
 });
 
 function NavBar({cartCount, setCartCount}){
     const [showModal, setShowModal] = useState(false);
-    // const cartSVG = "../assets/cart.svg";
 
     return(
         <>
@@ -34,7 +34,7 @@ function NavBar({cartCount, setCartCount}){
                 </li>
             </ul>
         </nav>
-        {!showModal && <CartModal cartCount={cartCount} setCartCount={setCartCount}/>}
+        {showModal && <CartModal cartCount={cartCount} setCartCount={setCartCount}/>}
         </>
     )
 }
@@ -48,17 +48,28 @@ function MainPage(){
     
     const [cartItems, setCartItems] = useState([]);
     const addToCart = (item)=>{
+        const newItem = [...cartItems]
         for(let i = 0; i < cartItems.length; i++){
             if(item.id == cartItems[i].id){   
-                console.log(item);
                 item.itemCount = item.itemCount + cartItems[i].itemCount; 
-                console.log(item);   
-                cartItems.splice(i,1);
-                break;
+                newItem.splice(i,1);
+                setCartItems(newItem.concat(item));
+                return;
             }
         }
         setCartItems(cartItems.concat(item));
-        console.log("Cart Items", cartItems);
+    }
+
+    const removeFromCart = (itemID)=>{
+        const newItems = [...cartItems]
+        for(let i = 0; i < cartItems.length; i++){
+            if(itemID == cartItems[i].id){   
+                newItems.splice(i,1);
+                console.log("REMOVED", newItems);
+                setCartItems(newItems);
+                return;
+            }
+        }    
     }
 
 
@@ -87,7 +98,7 @@ function MainPage(){
 
     return(
         <div id="main">
-            <CartContext.Provider value={{cartItems, addToCart}}>
+            <CartContext.Provider value={{cartItems, addToCart, removeFromCart}}>
             <NavBar cartCount={cartCount} setCartCount={setCartCount}/>
             {loading ? <LoadingScreen/> : 
                 <Outlet context={{

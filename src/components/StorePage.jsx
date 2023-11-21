@@ -56,7 +56,6 @@ function Item({id, title, price, img, cartInfo}){
                         cartInfo[1](cartInfo[0] + itemCount);
                         const item = {id, img, title, price, itemCount};
                         addToCart(item);
-                        console.log(cartItems)
                         return setItemCount(0);
                     }}
                     >ADD TO CART</button>
