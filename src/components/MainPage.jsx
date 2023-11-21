@@ -1,19 +1,24 @@
-import { useEffect , useState, useRef} from "react";
+import { createContext, useEffect , useState, useRef} from "react";
 import "../styles/MainPage.css";
 import styles from "../styles/NavBar.module.css"
-import HomePage from "./HomePage";
 import LoadingScreen from "./Loading";
 import cartSVG from '../assets/cart.svg'
-import StorePage from "./StorePage";
+import CartModal from "./ShoppingCart";
 
 import { Outlet, Link } from "react-router-dom";
 
 
+export const CartContext = createContext({
+    cartItems: [],
+    addToCart: ()=>{}
+});
 
-function NavBar(){
+function NavBar({cartCount, setCartCount}){
+    const [showModal, setShowModal] = useState(false);
     // const cartSVG = "../assets/cart.svg";
 
     return(
+        <>
         <nav className={styles.navContainer}>
             <ul className={styles.nav}>
                 <li className={`${styles.home} ${styles.navitems}`}>
@@ -24,10 +29,13 @@ function NavBar(){
                     <Link to="store" className={styles.navLinks}>Store</Link>
                 </li>
                 <li className={`${styles.cart} ${styles.navitems}`}>
-                    <img src={cartSVG}></img>
+                    <img src={cartSVG} onClick={()=>{setShowModal(!showModal)}}></img>
+                    <div>{cartCount}</div>
                 </li>
             </ul>
         </nav>
+        {!showModal && <CartModal cartCount={cartCount} setCartCount={setCartCount}/>}
+        </>
     )
 }
 
@@ -36,7 +44,24 @@ function MainPage(){
     const mensItems = useRef([]);
     const womensItems = useRef([]);
     const jewelry = useRef([]);
+    const [cartCount, setCartCount] = useState(0);
     
+    const [cartItems, setCartItems] = useState([]);
+    const addToCart = (item)=>{
+        for(let i = 0; i < cartItems.length; i++){
+            if(item.id == cartItems[i].id){   
+                console.log(item);
+                item.itemCount = item.itemCount + cartItems[i].itemCount; 
+                console.log(item);   
+                cartItems.splice(i,1);
+                break;
+            }
+        }
+        setCartItems(cartItems.concat(item));
+        console.log("Cart Items", cartItems);
+    }
+
+
 
     useEffect(()=>{
         fetch('https://fakestoreapi.com/products')
@@ -62,28 +87,18 @@ function MainPage(){
 
     return(
         <div id="main">
-            <NavBar/>
-            {/* {loading ? 
-                <LoadingScreen/> : 
-                <HomePage exampleItems={{
-                    mens: mensItems.current[1].image,
-                    womens: womensItems.current[0].image,
-                    jewelry: jewelry.current[0].image
-                }}/>} */}
-            {/* {loading ? <LoadingScreen/>:
-                <StorePage 
-                mensItems={mensItems.current} 
-                womensItems={womensItems.current} 
-                jewelry={jewelry.current}
-            />} */}
+            <CartContext.Provider value={{cartItems, addToCart}}>
+            <NavBar cartCount={cartCount} setCartCount={setCartCount}/>
             {loading ? <LoadingScreen/> : 
                 <Outlet context={{
                     mens: mensItems.current,
                     womens: womensItems.current,
-                    jewelry: jewelry.current
+                    jewelry: jewelry.current,
+                    cartInfo: [cartCount, setCartCount]
                 }}
                 />
             }
+            </CartContext.Provider>
         </div>
     )
 }

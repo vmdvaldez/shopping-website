@@ -42,7 +42,10 @@
     margin: 15px;
 }
 
-
+.imagesBackground{
+    background-color: var(--content-bg-color);
+    mix-blend-mode: darken;
+}
 
 .rightInfo,
 .leftInfo {

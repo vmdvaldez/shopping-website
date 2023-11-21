@@ -20,7 +20,9 @@ function CategoryExample({categoryName, categoryStyle, item, right=true}){
 
     return(
         <div className={categoryStyle}>
+            <div className={styles.imagesBackground}>
             <img className={styles.images} src={item} ></img>
+            </div>
             <div className={right ? styles.rightInfo : styles.leftInfo}>
                 <div>
                     <h1>{category[categoryName]}</h1>
