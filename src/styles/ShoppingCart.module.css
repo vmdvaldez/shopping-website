@@ -7,7 +7,9 @@
     height: 80vh;
     margin-left: -25vw;
     margin-top: -40vh;
-    background-color: green;
+    background-color: var(--header-color);
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
 }
 
 .cartItems{
