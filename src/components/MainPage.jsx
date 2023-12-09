@@ -1,6 +1,6 @@
 import { createContext, useEffect , useState, useRef} from "react";
 import "../styles/MainPage.css";
-import styles from "../styles/NavBar.module.css"
+import styles from "../styles/Navbar.module.css"
 import LoadingScreen from "./Loading";
 import cartSVG from '../assets/cart.svg'
 import CartModal from "./ShoppingCart";
